@@ -14,17 +14,34 @@ class Stoper extends React.Component {
     }
     render(){
         return (
-            <View style={stylesStoper.frame}>
-            <Text style={stylesStoper.text}>{this.state.a}{this.state.b}:{this.state.c}{this.state.d}</Text>
-            </View>
+            <View style={stylesStoper.main}>
+                <View style={stylesStoper.frame}>
+                    <Text style={stylesStoper.text}>{this.state.a}{this.state.b}:{this.state.c}{this.state.d}</Text>
+                </View>
 
+                <View style={stylesStoper.container}>
+                    <Button
+                        title='Start'
+                        />
+                    <Button
+
+                        title='Stop'
+                        />
+                </View>
+            </View>
             )
     }
 }
 const stylesStoper = StyleSheet.create({
+    main :{
+        display: 'flex',
+        alignContent:'space-between',
+        // alignItems:'space-between'
+    },
     frame: {
 
         display : 'flex',
+        marginTop: 50,
         justifyContent: 'center',
         alignItems: 'center',
         width: 300,
@@ -36,7 +53,21 @@ const stylesStoper = StyleSheet.create({
     text:{
         fontSize: 120,
         color: 'white',
-    }
+    },
+    container: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+
+  },
+  button:{
+
+      width: 200,
+      fontSize :50
+
+  }
+
 })
 
 
@@ -50,11 +81,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Stoper />
       </View>
-      <View style={styles.container}>
-          <Button
-              title='Stop'
-              />
-      </View>
+
     </Image>
     );
   }
