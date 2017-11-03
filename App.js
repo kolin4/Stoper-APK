@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Button } from 'react-native-elements'
+import { Button } from 'react-native-elements';
+
+
 
 class Stoper extends React.Component {
     constructor(props){
@@ -9,13 +11,78 @@ class Stoper extends React.Component {
             a:0,
             b:0,
             c:0,
-            d:0
+            d:0,
+            buttonName: 'Stop'
         }
 
     }
-    start = () => {
+    clickStart = (e) => {
+
+        console.log(e);
+        // dorzycam clearInterval poniewaz przy paru kliknieciach na start interval przyspiesza.
+        clearInterval(this.interval);
+        this.interval = setInterval( () => {
+            let {a,b,c,d} = this.state;
+            d++;
+
+            if ( d == 10 ){
+                c++;
+                d = 0;
+            }
+            if ( c == 6)  {
+                b++,
+                c = 0,
+                d= 0
+            }
+            if ( b == 10){
+                a++;
+                b = 0;
+            }
+
+            if ( a == 10 ){
+                a = 9;
+                b = 9;
+                c = 9;
+                d = 9;
+
+                clearInterval(this.interval);
+
+            }
+
+            this.setState({
+                a,
+                b,
+                c,
+                d,
+                buttonName: 'Stop'
+            })
+
+        },1000 )
+    }
+    clickStop = (e) => {
+
+        if (this.state.buttonName == 'Stop') {
+            clearInterval(this.interval);
+            this.setState({
+                buttonName: 'Reset'
+            })
+        } else if ( this.state.buttonName == 'Reset') {
+            this.setState({
+                a:0,
+                b:0,
+                c:0,
+                d:0,
+                buttonName: 'Stop'
+            })
+        }
 
     }
+
+
+    componentWillUnmount(){
+        clearInterval(this.interval);
+    }
+
     render(){
         return (
             <View style={stylesStoper.main}>
@@ -27,15 +94,15 @@ class Stoper extends React.Component {
                     <Button
                         buttonStyle = {stylesStoper.btn}
 
-                        onPress={this.start}
-                        title='START'
+                        onPress={this.clickStart}
+                        title='Start'
 
                         fontSize = {30}
                         />
                     <Button
                         buttonStyle = {stylesStoper.btn}
-                        onPress={this.start}
-                        title='STOP'
+                        onPress={this.clickStop}
+                        title={this.state.buttonName}
 
                         fontSize = {30}
                         />
