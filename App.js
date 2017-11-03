@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { Button } from 'react-native-elements'
 
 class Stoper extends React.Component {
     constructor(props){
@@ -12,6 +13,9 @@ class Stoper extends React.Component {
         }
 
     }
+    start = () => {
+
+    }
     render(){
         return (
             <View style={stylesStoper.main}>
@@ -21,11 +25,19 @@ class Stoper extends React.Component {
 
                 <View style={stylesStoper.container}>
                     <Button
-                        title='Start'
+                        buttonStyle = {stylesStoper.btn}
+
+                        onPress={this.start}
+                        title='START'
+
+                        fontSize = {30}
                         />
                     <Button
+                        buttonStyle = {stylesStoper.btn}
+                        onPress={this.start}
+                        title='STOP'
 
-                        title='Stop'
+                        fontSize = {30}
                         />
                 </View>
             </View>
@@ -35,6 +47,7 @@ class Stoper extends React.Component {
 const stylesStoper = StyleSheet.create({
     main :{
         display: 'flex',
+        alignItems: 'center',
         alignContent:'space-between',
         // alignItems:'space-between'
     },
@@ -57,14 +70,15 @@ const stylesStoper = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'flex-end',
       justifyContent: 'space-around',
 
   },
-  button:{
-
-      width: 200,
-      fontSize :50
+  btn:{
+      width:150,
+      marginBottom: 50,
+      backgroundColor: 'rgba(3,3,3,0.25)',
+      borderRadius: 5
 
   }
 
