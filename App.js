@@ -12,31 +12,56 @@ class Stoper extends React.Component {
             b:0,
             c:0,
             d:0,
+            e:0,
+            f:0,
+
             buttonName: 'Stop'
         }
 
     }
     clickStart = (e) => {
-
-        console.log(e);
         // dorzycam clearInterval poniewaz przy paru kliknieciach na start interval przyspiesza.
         clearInterval(this.interval);
         this.interval = setInterval( () => {
-            let {a,b,c,d} = this.state;
-            d++;
+            let {a,b,c,d,e,f,buttonName} = this.state;
+            e++;
+
+            if ( f == 10 ){
+                e++;
+                f = 0;
+
+            }
+
+            if ( e == 10 ){
+                d++;
+                e = 0;
+                f = 0;
+
+            }
 
             if ( d == 10 ){
                 c++;
                 d = 0;
+                e = 0;
+                f = 0;
+
             }
             if ( c == 6)  {
                 b++,
-                c = 0,
-                d= 0
+                c = 0;
+                d = 0;
+                e = 0;
+                f = 0;
+
             }
             if ( b == 10){
                 a++;
                 b = 0;
+                c = 0;
+                d = 0;
+                e = 0;
+                f = 0;
+
             }
 
             if ( a == 10 ){
@@ -44,6 +69,9 @@ class Stoper extends React.Component {
                 b = 9;
                 c = 9;
                 d = 9;
+                e = 9;
+                f = 9;
+
 
                 clearInterval(this.interval);
 
@@ -54,10 +82,12 @@ class Stoper extends React.Component {
                 b,
                 c,
                 d,
+                e,
+                f,
                 buttonName: 'Stop'
             })
 
-        },1000 )
+        }, 100 )
     }
     clickStop = (e) => {
 
@@ -72,6 +102,8 @@ class Stoper extends React.Component {
                 b:0,
                 c:0,
                 d:0,
+                e:0,
+                f:0,
                 buttonName: 'Stop'
             })
         }
@@ -87,7 +119,7 @@ class Stoper extends React.Component {
         return (
             <View style={stylesStoper.main}>
                 <View style={stylesStoper.frame}>
-                    <Text style={stylesStoper.text}>{this.state.a}{this.state.b}:{this.state.c}{this.state.d}</Text>
+                    <Text style={stylesStoper.text}>{this.state.a}{this.state.b}:{this.state.c}{this.state.d}<Text style={stylesStoper.sec}>.{this.state.e}</Text></Text>
                 </View>
 
                 <View style={stylesStoper.container}>
@@ -131,8 +163,11 @@ const stylesStoper = StyleSheet.create({
         elevation:2     // boxShadow: 1 1 50 'black'
     },
     text:{
-        fontSize: 120,
+        fontSize: 90,
         color: 'white',
+    },
+    sec:{
+        fontSize:40
     },
     container: {
       flex: 1,
