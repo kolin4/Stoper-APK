@@ -5,4 +5,6 @@ React-Native  Android APK
 Need to open with Expo  
 exp://exp.host/@kolin4/stoper-react
 
-![alt text](http://i67.tinypic.com/nmd98p.png)
+![alt text](http://i67.tinypic.com/1zxbmzm.png)
+
+http://i67.tinypic.com/nmd98p.png
